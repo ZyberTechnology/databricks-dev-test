@@ -19,9 +19,17 @@ notebooks/
 tests/                 Tests for transformations and data quality rules
 ```
 
-The layer folders contain brief starting notes. Add source-specific notebooks
-and tests as the dataset and requirements are defined. Avoid committing real or
-sensitive source data to `data/landing`.
+The layer folders contain a notebook for each stage: `bronze/bronze_ingest.ipynb`,
+`silver/silver_clean.ipynb`, and `gold/gold_powerbi_publish.ipynb`. Run them in
+that order. The starter notebooks read CSV files from the Unity Catalog volume
+`/Volumes/superpower/bronze/landing` and write tables under the `superpower`
+catalog. Each run replaces its output table with the current result. Avoid
+committing real or sensitive source data to `data/landing`.
+
+The Gold notebook publishes `superpower.gold.pbi_dataset` and
+`superpower.gold.ingestion_summary`. These are starter reporting tables; add
+source-specific types, business measures, and dimensions before building
+production Power BI reports.
 
 ## Suggested workflow
 
